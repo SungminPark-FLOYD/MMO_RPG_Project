@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Managers : MonoBehaviour
 {
+    //싱글톤 패턴
+    //객체의 인스턴스가 오직 하나만 생성되는 패턴
     static Managers s_instance;                           //유일성이 보장된다
     public static Managers Instance { get { Init(); return s_instance; } }  //유일한 매니저를 갖고 온다
     void Start()
