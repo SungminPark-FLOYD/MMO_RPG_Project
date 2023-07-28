@@ -12,7 +12,9 @@ public class Managers : MonoBehaviour
     //유일한 매니저를 갖고 온다
 
     InputManager _input = new InputManager();
+    ResourceManager _resourceManager = new ResourceManager();
     public static InputManager Input { get { return Instance._input; } }
+    public static ResourceManager Resource { get { return Instance._resourceManager; } }
     void Start()
     {
         Init();
