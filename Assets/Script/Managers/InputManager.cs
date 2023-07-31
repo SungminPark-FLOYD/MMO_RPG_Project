@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class InputManager
 {
@@ -13,6 +14,9 @@ public class InputManager
 
     public void OnUpdate()
     {
+        //이벤트 발생시 리턴
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
         if(Input.anyKey && KeyAction != null) 
             KeyAction.Invoke();
         if(MouseAction != null)
