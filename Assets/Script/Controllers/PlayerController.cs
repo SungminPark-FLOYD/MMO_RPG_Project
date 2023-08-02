@@ -8,18 +8,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float _speed = 10.0f;
 
-    //bool _moveToDest = false;
     Vector3 _destPos;
     void Start()
     {
         //구독신청
         //Managers.Input.KeyAction -= OnKeyBoard;
         //Managers.Input.KeyAction += OnKeyBoard;
+
         Managers.Input.MouseAction -= OnMouseClicked;
         Managers.Input.MouseAction += OnMouseClicked;
 
-        //Managers.Resource.Instantiate("UI/UI_Button");
+        //인벤토리 만들기
 
+        Managers.UI.ShowSceneUI<UI_Inven>();
+
+        /* UIManager 실습
+        //ui생성
+        //Managers.UI.ShowPopupUI<UI_Button>("UI_Button");
+        //삭제
+        //ver1
+        //Managers.UI.ClosePopupUI();
+        //ver2
+        //Managers.UI.ClosePopupUI(ui);
+        */
     }
 
    
@@ -46,6 +57,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             //Mathf.Clamp 를 이용해서 거리계산에 오류가 없도록 예방
+
             float moveDist = Mathf.Clamp(_speed * Time.deltaTime, 0, dir.magnitude);
             transform.position += dir.normalized * moveDist;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
@@ -53,16 +65,23 @@ public class PlayerController : MonoBehaviour
         }
 
         //애니메이션
+
         Animator anim = GetComponent<Animator>();
+
         //현재 게임 상태에 대한 정보를 넘겨준다
+
         anim.SetFloat("speed", _speed);
     }
     void UpdateIdle()
     {
         //애니메이션
+
         Animator anim = GetComponent<Animator>();
+
         //현재 게임 상태에 대한 정보를 넘겨준다
+
         anim.SetFloat("speed", 0);
+
     }
     void Update()
     {                      
@@ -81,6 +100,7 @@ public class PlayerController : MonoBehaviour
         }
            
     }
+
     //키보드 입력
     /*
     void OnKeyBoard()
@@ -117,10 +137,12 @@ public class PlayerController : MonoBehaviour
         if (_state == PlayerState.Die) return;
 
         //레이저 그리기
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
 
         //레이저로 충돌 확인
+
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit, 100.0f, LayerMask.GetMask("Wall")))
         {
@@ -132,6 +154,7 @@ public class PlayerController : MonoBehaviour
 
     
 }
+
 /*
  *       Local -> World
  *       TransformDirection

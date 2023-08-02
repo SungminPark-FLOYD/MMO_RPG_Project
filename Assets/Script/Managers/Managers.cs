@@ -13,8 +13,10 @@ public class Managers : MonoBehaviour
 
     InputManager _input = new InputManager();
     ResourceManager _resourceManager = new ResourceManager();
+    UIManager _ui = new UIManager();
     public static InputManager Input { get { return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resourceManager; } }
+    public static UIManager UI { get { return Instance._ui; } }
     void Start()
     {
         Init();

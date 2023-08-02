@@ -19,7 +19,13 @@ public class ResourceManager
             return null;
         }
 
-        return Object.Instantiate(prefab, parent);
+        GameObject go = Object.Instantiate(prefab, parent);
+        int index = go.name.IndexOf("(Clone)");
+        //문자열 자르기
+        if(index > 0) 
+            go.name = go.name.Substring(0, index);
+
+        return go;
     }
     //파괴 관리
     public void Destroy(GameObject go)

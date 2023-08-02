@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_Button : UI_Base
+public class UI_Button : UI_Popup
 {
     //UI 자동화
     enum Buttons
@@ -30,21 +30,26 @@ public class UI_Button : UI_Base
     }
     private void Start()
     {
+        Init();
+    }
+
+    public override void Init()
+    {
+        //부모님 같이 호출
+        base.Init();
+
         //enum 타입 넘기기
         Bind<Button>(typeof(Buttons));
         Bind<Text>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
 
-        
-
         //인자를 받아서 코드로 처리
-        GetButton((int)Buttons.PointButton).gameObject.AddUIEvent(OnClickedEvent);
+        GetButton((int)Buttons.PointButton).gameObject.BindEvent(OnClickedEvent);
 
         //이미지 뽑아오기
         GameObject go = GetImage((int)Images.ItemIcon).gameObject;
-        AddUIEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
-       
+        BindEvent(go, (PointerEventData data) => { go.transform.position = data.position; }, Define.UIEvent.Drag);
     }
 
     int _score = 0;
