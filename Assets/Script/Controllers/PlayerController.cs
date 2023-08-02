@@ -16,21 +16,7 @@ public class PlayerController : MonoBehaviour
         //Managers.Input.KeyAction += OnKeyBoard;
 
         Managers.Input.MouseAction -= OnMouseClicked;
-        Managers.Input.MouseAction += OnMouseClicked;
-
-        //인벤토리 만들기
-
-        Managers.UI.ShowSceneUI<UI_Inven>();
-
-        /* UIManager 실습
-        //ui생성
-        //Managers.UI.ShowPopupUI<UI_Button>("UI_Button");
-        //삭제
-        //ver1
-        //Managers.UI.ClosePopupUI();
-        //ver2
-        //Managers.UI.ClosePopupUI(ui);
-        */
+        Managers.Input.MouseAction += OnMouseClicked; 
     }
 
    
