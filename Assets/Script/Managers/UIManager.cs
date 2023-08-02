@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager
@@ -114,5 +115,11 @@ public class UIManager
         {
             ClosePopupUI();
         }
+    }
+
+    public void Clear()
+    {
+        CloseAllPopupUI();
+        _scene = null;
     }
 }

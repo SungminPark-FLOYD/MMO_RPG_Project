@@ -14,10 +14,12 @@ public class Managers : MonoBehaviour
     InputManager _input = new InputManager();
     ResourceManager _resourceManager = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
+    SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
     public static InputManager Input { get { return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resourceManager; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
+    public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
     void Start()
     {
@@ -43,7 +45,17 @@ public class Managers : MonoBehaviour
             }
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
-        }
 
+            //Init 안에서 Instance를 다시 사용하게 되면 무한 루프에 빠질 수 있으므로 조심해야한다
+            s_instance._sound.Init();
+        }
+    }
+
+    public static void Clear()
+    {
+        Input.Clear();
+        Sound.Clear();
+        Scene.Clear();
+        UI.Clear();
     }
 }
