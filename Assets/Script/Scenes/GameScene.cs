@@ -12,6 +12,9 @@ public class GameScene : BaseScene
         //인벤토리 만들기
         Managers.UI.ShowSceneUI<UI_Inven>();
 
+        for (int i = 0; i < 5; i++)
+            Managers.Resource.Instantiate("UnityChan");
+
         /* UIManager 실습
         //ui생성
         //Managers.UI.ShowPopupUI<UI_Button>("UI_Button");
