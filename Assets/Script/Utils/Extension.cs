@@ -16,6 +16,11 @@ public static class Extension
     {
         UI_Base.BindEvent(go, action, type);
     }
+
+    public static bool isValid(this GameObject go)
+    {
+        return go != null && go.activeSelf;
+    }
 }
 /*
  * 강제로 함수를 생성할수있는 기능 : Extension메서드는 static class로 생성해야한다

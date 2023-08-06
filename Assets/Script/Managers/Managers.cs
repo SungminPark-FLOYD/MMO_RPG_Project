@@ -11,6 +11,13 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } }
     //유일한 매니저를 갖고 온다
 
+    #region Contents
+    GameManager _game = new GameManager();
+
+    public static GameManager Game { get { return Instance._game; } }
+    #endregion
+
+    #region Core
     DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
@@ -19,6 +26,7 @@ public class Managers : MonoBehaviour
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
 
+    
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool { get { return Instance._pool; } }
@@ -26,6 +34,7 @@ public class Managers : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
+    #endregion
     void Start()
     {
         Init();

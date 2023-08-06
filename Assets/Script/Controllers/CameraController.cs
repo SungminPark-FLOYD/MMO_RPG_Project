@@ -10,6 +10,8 @@ public class CameraController : MonoBehaviour
     Vector3 _delta = new Vector3(0, 6.0f, -5.0f);
     [SerializeField]
     GameObject _player = null;
+
+    public void SetPlayer(GameObject player) { _player = player; }
     void Start()
     {
         
@@ -20,8 +22,12 @@ public class CameraController : MonoBehaviour
         //카메라 위치 정의
         if(_mode == Define.CameraMode.QuarterView)
         {
+            if(_player.isValid() == false)
+            {
+                return;
+            }
             RaycastHit hit;
-            if(Physics.Raycast(_player.transform.position, _delta, out hit, _delta.magnitude, LayerMask.GetMask("Wall")))
+            if(Physics.Raycast(_player.transform.position, _delta, out hit, _delta.magnitude, 1 << (int)Define.Layer.Block))
             {
                 //카메라에서 ray를 보내서 Wall에 닿으면 player쪽에 가깝게 위치하도록 설정
                 float dist = (hit.point - _player.transform.position).magnitude * 0.8f;

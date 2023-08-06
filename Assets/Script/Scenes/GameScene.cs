@@ -13,7 +13,20 @@ public class GameScene : BaseScene
         Managers.UI.ShowSceneUI<UI_Inven>();
 
         //Data 가져오기
-        Dictionary<int, Stat> dict = Managers.Data.StatDict;
+        Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
+
+        //커서 컴포넌트 추가
+        gameObject.GetOrAddComponent<CursorController>();
+
+        //오브젝트 추가
+        GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
+        //플레이어 카메라 설정
+        Camera.main.gameObject.GetOrAddComponent<CameraController>().SetPlayer(player);
+
+        //Managers.Game.Spawn(Define.WorldObject.Monster, "Knight");
+        GameObject go = new GameObject { name = "SpawningPool" };
+        SpawningPool pool = go.GetOrAddComponent<SpawningPool>();
+        pool.SetKeepMonsterCount(5);
 
         /* UIManager 실습
         //ui생성
